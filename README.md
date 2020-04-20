@@ -26,7 +26,9 @@ Data: [{Column1:test1 Column2:test2}]
 Data1 Col1: test1 Data2 Col2:
 ```
 
-It may differ in that the first csv may be the one that has no data. The correct results would be:
+It may differ in that the first csv may be the one that has no data. The thing to notice is that either the first or the second CSV's data will not parse. It seems to be the second one that is usually failing due to the Go scheduler allowing it to set it's CSVReader first, then the first call set's it's CSVReader with a different delimiter.
+
+The correct results would be:
 ```
 CSV: COLUMN1,COLUMN2
 test1,test2
